@@ -1,6 +1,7 @@
 const tileDisplay = document.querySelector('.tile-container')
 const keyboard = document.querySelector('.key-container')
 const messageDisplay = document.querySelector('.message-container')
+const popupDisplay = document.querySelector('.popup-container')
 
 const wordle = 'STACEY'
 
@@ -34,6 +35,7 @@ const keys = [
     'M',
     '←',
 ]
+
 const guessRows = [
     ['', '', '', '', '',''],
     ['', '', '', '', '',''],
@@ -107,6 +109,8 @@ const checkRow = () => {
         flipTile()
         if (wordle == guess) {
             showMessage('Magnifico!')
+            showOverlay()
+            showPopup()
             isGameOver = true
             return
         } else {
@@ -165,5 +169,21 @@ const flipTile = () => {
             addColorToKey(guess[index].letter, guess[index].color)
         }, 500 * index)
     })
+}
+
+// Show Overlay
+const overlay = document.getElementById('overlay-container')
+const showOverlay = () => {
+    overlay.style.display = 'block'
+}
+
+// Show Popup
+const showPopup = (popup) => {
+    const popupElement = document.createElement('img')
+    popupElement.setAttribute('src', './images/animacao.gif')
+    popupElement.setAttribute('id', 'image')
+    popupElement.setAttribute('alt', 'Desenho de uma garota alien de pele rosa, quatro olhos pretos e antenas. Ao lado há um balão de fala com o texto: Oi eu sou a Stacey')
+    popupElement.style.display = 'block'
+    popupDisplay.append(popupElement)
 }
 
