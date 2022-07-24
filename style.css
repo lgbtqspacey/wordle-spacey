@@ -8,6 +8,10 @@ body {
     background-color: #b65b71;
 }
 
+h2 {
+    font-size: 15px;
+}
+
 .game-container {
     height: 90vh;
     width: 100%;
@@ -69,7 +73,12 @@ body {
 
 .message-container {
     height: 30px;
-    margin-bottom: 15px;
+    z-index: 200;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2px;
+    animation: 0.5s appear;
 }
 
 .message-container p {
@@ -77,6 +86,16 @@ body {
     border-radius: 10px;
     padding: 10px;
     margin: 3px;
+    margin-bottom: 15px;
+}
+
+.message-container button, a{
+    background-color: #9c4e61;
+    border-color: transparent;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 3px;
+    margin-bottom: 15px;
 }
 
 .tile.flip {

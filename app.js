@@ -37,12 +37,12 @@ const keys = [
 ]
 
 const guessRows = [
-    ['', '', '', '', '',''],
-    ['', '', '', '', '',''],
-    ['', '', '', '', '',''],
-    ['', '', '', '', '',''],
-    ['', '', '', '', '',''],
-    ['', '', '', '', '','']
+    ['', '', '', '', '', ''],
+    ['', '', '', '', '', ''],
+    ['', '', '', '', '', ''],
+    ['', '', '', '', '', ''],
+    ['', '', '', '', '', ''],
+    ['', '', '', '', '', '']
 ]
 let currentRow = 0
 let currentTile = 0
@@ -108,14 +108,16 @@ const checkRow = () => {
     if (currentTile > 5) {
         flipTile()
         if (wordle == guess) {
-            showMessage('Magnifico!')
+            showMessage('✅ Mensagem decodificada!')
             showOverlay()
             showPopup()
+            share()
             isGameOver = true
             return
         } else {
             if (currentRow >= 5) {
-                showMessage(`Fim de jogo!\nTente novamente!`)
+                showMessage('⛔ Código Incorreto!')
+                tryAgain()
                 isGameOver = true
                 return
             }
@@ -131,7 +133,18 @@ const showMessage = (message) => {
     const messageElement = document.createElement('p')
     messageElement.textContent = message
     messageDisplay.append(messageElement)
-    //setTimeout(() => messageDisplay.removeChild(messageElement), 2000)
+}
+
+function tryAgain() {
+    const buttonElement = document.createElement('button')
+    buttonElement.setAttribute('onclick', 'reload()')
+    buttonElement.innerHTML = `Clique aqui para tentar outra vez!`
+    messageDisplay.append(buttonElement)
+}
+
+//reload-button
+function reload() {
+    window.location.reload();
 }
 
 const addColorToKey = (keyLetter, color) => {
@@ -145,7 +158,7 @@ const flipTile = () => {
     const guess = []
 
     rowTiles.forEach(tile => {
-        guess.push({letter: tile.getAttribute('data'), color: 'grey-overlay'})
+        guess.push({ letter: tile.getAttribute('data'), color: 'grey-overlay' })
     })
 
     guess.forEach((guess, index) => {
@@ -173,12 +186,12 @@ const flipTile = () => {
 
 // Show Overlay
 const overlay = document.getElementById('overlay-container')
-const showOverlay = () => {
+function showOverlay() {
     overlay.style.display = 'block'
 }
 
 // Show Popup
-const showPopup = (popup) => {
+function showPopup() {
     const popupElement = document.createElement('img')
     popupElement.setAttribute('src', './images/animacao.gif')
     popupElement.setAttribute('id', 'image')
@@ -187,3 +200,10 @@ const showPopup = (popup) => {
     popupDisplay.append(popupElement)
 }
 
+function share() {
+    const shareElement = document.createElement('a')
+    shareElement.setAttribute('id', 'tweet')
+    shareElement.setAttribute('href', `https://twitter.com/intent/tweet?text=Eu%20decodifiquei%20a%20mensagem!%20Tente%20também!%20https://games.lgbtqspacey.com%20via%20@lgbtqspacey`)
+    shareElement.innerHTML = `Compartilhar no Twitter`
+    messageDisplay.append(shareElement)
+}
