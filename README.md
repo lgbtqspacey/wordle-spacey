@@ -2,7 +2,7 @@
 
 A wordle game for [LGBTQ+ Spacey website](https://lgbtqspacey.com/).
 
-[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/ashtrindade/wordle-spacey/blob/main/LICENSE.md)
+[![MIT License](https://img.shields.io/github/license/ashtrindade/wordle-spacey)](https://github.com/ashtrindade/wordle-spacey/blob/main/LICENSE.md)
 
 ---
 ## Template
